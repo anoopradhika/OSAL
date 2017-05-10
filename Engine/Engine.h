@@ -1,5 +1,11 @@
+#include <uv.h>
+
 class Engine
 {
+
+private:
+  uv_loop_t* loop;
+
 public:
   Engine();
   ~Engine();
