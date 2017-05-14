@@ -17,42 +17,15 @@
  *  or see <http://www.gnu.org/licenses/>
 */
 
-#include"Engine.h"
+#include"Engine_controller.h"
 
-Engine::Engine()
+Engine_controller::Engine_controller()
 {
 
 }
 
-Engine::~Engine()
+Engine_controller::~Engine_controller()
 {
 
 }
 
-void Engine::start()
-{
-   engine_controller.handle = uv_default_loop();
-}
-
-void Engine::run()
-{
-  uv_run(engine_controller.handle,engine_controller.run_option);
-}
-
-
-void Engine::stop()
-{
-  uv_stop(engine_controller.handle);
-}
-
-
-bool Engine::is_running()
-{
-
-}
-
-
-void Engine::off()
-{
-  uv_loop_close(engine_controller.handle);
-}

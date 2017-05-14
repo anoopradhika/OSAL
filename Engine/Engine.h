@@ -17,14 +17,13 @@
  *  or see <http://www.gnu.org/licenses/>
 */
 
-
-#include <uv.h>
+#include"Engine_controller.h"
 
 class Engine
 {
 
 private:
-  uv_loop_t* loop;
+  Engine_controller engine_controller;
 
 public:
   Engine();
@@ -33,6 +32,7 @@ public:
   void start();
   void run();
   bool is_running();
+
   void stop();
   void off();
 };
