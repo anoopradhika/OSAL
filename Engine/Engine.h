@@ -25,14 +25,28 @@ class Engine
 private:
   Engine_controller engine_controller;
 
-public:
+protected:
   Engine();
+
   ~Engine();
 
+  Engine( Engine const&);
+
+  void operator=(Engine const&);
+public:
+  Engine( Engine const&) = delete;
+
+  void operator=( Engine const& ) = delete;
+
+  static Engine& get_engine();
+
   void start();
+
   void run();
+
   bool is_running();
 
   void stop();
+
   void off();
 };

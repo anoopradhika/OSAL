@@ -9,9 +9,9 @@ private:
 public:
   Process();
   ~Process();
-  start();
-  run();
-  is_running();
-  stop();
-  off();
+  void start();
+  void run();
+  bool is_running();
+  void stop();
+  void off();
 };

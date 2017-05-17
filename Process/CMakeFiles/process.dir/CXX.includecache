@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/neo/build/OSAL/Process/Process.cpp
+Process.h
+/home/neo/build/OSAL/Process/Process.h
+
+/home/neo/build/OSAL/Process/Process.h
+uv.h
+/home/neo/build/OSAL/Process/uv.h
+

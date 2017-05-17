@@ -29,6 +29,14 @@ Engine::~Engine()
 
 }
 
+
+static Engine& Engine::get_engine()
+{
+  static Engine engine;
+  return engine;
+}
+
+
 void Engine::start()
 {
    engine_controller.handle = uv_default_loop();

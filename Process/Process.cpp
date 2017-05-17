@@ -12,31 +12,31 @@ Process::~Process()
 }
 
 
-Process::start()
+void Process::start()
 {
 
 }
 
 
-Process::run()
+void Process::run()
+{
+  //uv_spawn();
+}
+
+
+bool Process::is_running()
 {
 
 }
 
 
-Process::is_running()
+void Process::stop()
 {
 
 }
 
 
-Process::stop()
-{
-
-}
-
-
-Process::off()
+void Process::off()
 {
 
 }

@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/neo/build/OSAL/Engine/Engine.cpp
+Engine.h
+/home/neo/build/OSAL/Engine/Engine.h
+
+/home/neo/build/OSAL/Engine/Engine.h
+Engine_controller.h
+/home/neo/build/OSAL/Engine/Engine_controller.h
+
+/home/neo/build/OSAL/Engine/Engine_controller.cpp
+Engine_controller.h
+/home/neo/build/OSAL/Engine/Engine_controller.h
+
+/home/neo/build/OSAL/Engine/Engine_controller.h
+uv.h
+-
+
