@@ -30,7 +30,7 @@ Engine::~Engine()
 }
 
 
-static Engine& Engine::get_engine()
+Engine& Engine::get_engine()
 {
   static Engine engine;
   return engine;

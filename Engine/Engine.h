@@ -30,13 +30,7 @@ protected:
 
   ~Engine();
 
-  Engine( Engine const&);
-
-  void operator=(Engine const&);
 public:
-  Engine( Engine const&) = delete;
-
-  void operator=( Engine const& ) = delete;
 
   static Engine& get_engine();
 

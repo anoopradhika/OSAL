@@ -60,15 +60,15 @@ include Engine/CMakeFiles/engine.dir/flags.make
 Engine/CMakeFiles/engine.dir/Engine.cpp.o: Engine/CMakeFiles/engine.dir/flags.make
 Engine/CMakeFiles/engine.dir/Engine.cpp.o: Engine/Engine.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/neo/build/OSAL/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Engine/CMakeFiles/engine.dir/Engine.cpp.o"
-	cd /home/neo/build/OSAL/Engine && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/engine.dir/Engine.cpp.o -c /home/neo/build/OSAL/Engine/Engine.cpp
+	cd /home/neo/build/OSAL/Engine && /usr/bin/g++-5   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/engine.dir/Engine.cpp.o -c /home/neo/build/OSAL/Engine/Engine.cpp
 
 Engine/CMakeFiles/engine.dir/Engine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/engine.dir/Engine.cpp.i"
-	cd /home/neo/build/OSAL/Engine && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/neo/build/OSAL/Engine/Engine.cpp > CMakeFiles/engine.dir/Engine.cpp.i
+	cd /home/neo/build/OSAL/Engine && /usr/bin/g++-5  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/neo/build/OSAL/Engine/Engine.cpp > CMakeFiles/engine.dir/Engine.cpp.i
 
 Engine/CMakeFiles/engine.dir/Engine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/engine.dir/Engine.cpp.s"
-	cd /home/neo/build/OSAL/Engine && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/neo/build/OSAL/Engine/Engine.cpp -o CMakeFiles/engine.dir/Engine.cpp.s
+	cd /home/neo/build/OSAL/Engine && /usr/bin/g++-5  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/neo/build/OSAL/Engine/Engine.cpp -o CMakeFiles/engine.dir/Engine.cpp.s
 
 Engine/CMakeFiles/engine.dir/Engine.cpp.o.requires:
 
@@ -84,15 +84,15 @@ Engine/CMakeFiles/engine.dir/Engine.cpp.o.provides.build: Engine/CMakeFiles/engi
 Engine/CMakeFiles/engine.dir/Engine_controller.cpp.o: Engine/CMakeFiles/engine.dir/flags.make
 Engine/CMakeFiles/engine.dir/Engine_controller.cpp.o: Engine/Engine_controller.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/neo/build/OSAL/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Engine/CMakeFiles/engine.dir/Engine_controller.cpp.o"
-	cd /home/neo/build/OSAL/Engine && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/engine.dir/Engine_controller.cpp.o -c /home/neo/build/OSAL/Engine/Engine_controller.cpp
+	cd /home/neo/build/OSAL/Engine && /usr/bin/g++-5   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/engine.dir/Engine_controller.cpp.o -c /home/neo/build/OSAL/Engine/Engine_controller.cpp
 
 Engine/CMakeFiles/engine.dir/Engine_controller.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/engine.dir/Engine_controller.cpp.i"
-	cd /home/neo/build/OSAL/Engine && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/neo/build/OSAL/Engine/Engine_controller.cpp > CMakeFiles/engine.dir/Engine_controller.cpp.i
+	cd /home/neo/build/OSAL/Engine && /usr/bin/g++-5  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/neo/build/OSAL/Engine/Engine_controller.cpp > CMakeFiles/engine.dir/Engine_controller.cpp.i
 
 Engine/CMakeFiles/engine.dir/Engine_controller.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/engine.dir/Engine_controller.cpp.s"
-	cd /home/neo/build/OSAL/Engine && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/neo/build/OSAL/Engine/Engine_controller.cpp -o CMakeFiles/engine.dir/Engine_controller.cpp.s
+	cd /home/neo/build/OSAL/Engine && /usr/bin/g++-5  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/neo/build/OSAL/Engine/Engine_controller.cpp -o CMakeFiles/engine.dir/Engine_controller.cpp.s
 
 Engine/CMakeFiles/engine.dir/Engine_controller.cpp.o.requires:
 
