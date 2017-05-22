@@ -1,3 +1,4 @@
+
 /*
  *  Copyright (C) 2017  Anoop Chandran
  *
@@ -18,6 +19,8 @@
 */
 
 #include"Engine_controller.h"
+
+const uv_run_mode Engine_controller::run_option = UV_RUN_DEFAULT;
 
 Engine_controller::Engine_controller()
 {
