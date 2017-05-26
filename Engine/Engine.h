@@ -27,18 +27,23 @@ private:
 
 protected:
   Engine();
+  
+  static Engine* engine;
 
-  ~Engine();
+  static bool engine_created;
 
 public:
+  ~Engine();
 
-  static Engine& get_engine();
+  static Engine* get_engine();
 
   void start();
 
   void run();
 
   bool is_running();
+
+  Engine_controller& get_engine_controller();
 
   void stop();
 

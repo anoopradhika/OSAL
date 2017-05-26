@@ -27,5 +27,5 @@ public:
   Engine_controller();
   ~Engine_controller();
   uv_loop_t* handle;
-  static const uv_run_mode run_option = UV_RUN_DEFAULT;
+  static const uv_run_mode run_option;
 };

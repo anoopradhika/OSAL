@@ -19,6 +19,8 @@
 
 #include"Engine.h"
 
+bool Engine::engine_created = false;
+
 Engine::Engine()
 {
 
@@ -26,14 +28,23 @@ Engine::Engine()
 
 Engine::~Engine()
 {
-
+  engine_created = false;
 }
 
 
-Engine& Engine::get_engine()
+Engine* Engine::get_engine()
 {
-  static Engine engine;
+  if( false == engine_created )
+  {
+    engine = new Engine;
+    engine_created = true;
+  }
   return engine;
+}
+
+Engine_controller& Engine::get_engine_controller()
+{
+  return engine_controller;
 }
 
 
