@@ -23,15 +23,25 @@
 
 //TODO usage of uv_disable_stdio_inheritance need to be identified
 
-
+/**
+  Class Process is wrapper use OS process functionality
+*/
 class Process
 {
 
 public:
+  /**
+    Notification invoked on the termination of a process
+    @param exit_status: exit status of a terminated process
+    @param term_signal: Process is terminated because of this signal
+  */
   typedef void (Process::*Termination_notification_t)( int64_t exit_status, int term_signal);
-  Process();
-  ~Process();
 
+  /** Create a Procecss entity. Does nothing*/
+  Process();
+
+  /** Destory a procecss entity. Does nothing*/
+  ~Process();
 
   /**
     Set the arguments for process
@@ -41,27 +51,78 @@ public:
   */
   void set_arguments(const char* process_file_path, char** args, char** env );
 
-  /** Method called on the exit of process terminate */  
-  static void termination_notification(uv_process_t*, long int exit_status, int term_signal);
+  /**
+    Termination callback used for connecting to UVlib process termination callback
+    @param handle: handle hold process ID
+    @param exit_status: exit status of a terminated process
+    @param term_signal: Process is terminated because of this signal
+ */  
+  static void termination_notification(uv_process_t* handle, long int exit_status, int term_signal);
 
+  /** 
+    map used for connecting process id to Process. It is used for accessing
+    Process address from termination_notification.
+  */
   static std::unordered_map<uint32_t, Process* > process_map;
-
+  
+  
+  /**
+    called from termination_notification and used for accessing notification
+    @param exit_status: exit status of a terminated process
+    @param term_signal: Process is terminated because of this signal
+  */
   void tereminated(long int exit_status, int term_signal);
 
-  /** Set user given callback 	*/
+  /**
+    Set a functon to be called on the termination of process
+    @param  _notification: pointer to function
+ 	*/
   void set_termination_notification(Termination_notification_t _notification);
+  
+  /** get egine to run Process */
   void start();
+  
+  /** After set_arguments(), run a prosees */
   void run();
+  
+  /**
+     get process id of a process created by class Process
+     @return return the process id
+  */
   int get_pid();
+  
+  /**
+    send to signal to a process with process id
+    @param pid: process id
+    @param signal: signal to send
+  */
   void kill(int pid, int signal);
+  
+  /**
+    check this process is running
+    @return return true, if process is running, esle fasle
+  */
   bool is_running();
+  
+  /**
+    stop the running process
+  */
   void stop();
+  
+  /** called after stop. Cleanup the process before new start */
   void off();
 
 private:
+  /** handle provide by unlib after process run */
   uv_process_t handle;
+  
+  /** option need to start a process, this is specific to uvlib */
   uv_process_options_t options;
+  
+  /** Engine need for run a process class */
   Engine* engine;
+
+  /** stores the callback to be called on process terminate */  
   Termination_notification_t notification;
-  //Callback_manager callback_manager;
+  
 };
