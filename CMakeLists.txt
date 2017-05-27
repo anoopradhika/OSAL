@@ -8,6 +8,7 @@ project (osal_lib)
 add_subdirectory(communicator)
 add_subdirectory(Engine)
 add_subdirectory(Process)
+add_subdirectory(osal_test_base)
 
 add_executable(osal_lib main.cpp)
 target_link_libraries(osal_lib communicator engine process)
