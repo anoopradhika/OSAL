@@ -49,7 +49,7 @@ public:
     @param args: arguments for the process
     @param env: enviorment for the process
   */
-  void set_arguments(const char* process_file_path, char** args, char** env );
+  void create(const char* process_file_path, char** args, char** env );
 
   /**
     Termination callback used for connecting to UVlib process termination callback
@@ -79,9 +79,6 @@ public:
  	*/
   void set_termination_notification(Termination_notification_t _notification);
   
-  /** get egine to run Process */
-  void start();
-  
   /** After set_arguments(), run a prosees */
   void run();
   
@@ -105,12 +102,17 @@ public:
   bool is_running();
   
   /**
+    run the stoped process
+  */
+  void resume();
+  
+  /**
     stop the running process
   */
   void stop();
   
   /** called after stop. Cleanup the process before new start */
-  void off();
+  void destroy();
 
 private:
   /** handle provide by unlib after process run */

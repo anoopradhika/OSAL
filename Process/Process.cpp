@@ -33,7 +33,7 @@ Process::~Process()
 }
 
 
-void Process::set_arguments(const char* process_file_path, char** args, char** env )
+void Process::create(const char* process_file_path, char** args, char** env )
 {
   options.file = process_file_path;
   options.args = args;
@@ -42,6 +42,7 @@ void Process::set_arguments(const char* process_file_path, char** args, char** e
   options.flags = UV_PROCESS_SETUID|UV_PROCESS_SETGID;
   //TODO othere option not set yet. if need add it latter
   notification = NULL;
+  engine = Engine::get_engine();
 }
 
 
@@ -68,11 +69,6 @@ void Process::termination_notification(uv_process_t* _handle, long int exit_stat
   
 }
 
-
-void Process::start()
-{
-  engine = Engine::get_engine();
-}
 
 
 void Process::run()
@@ -101,14 +97,20 @@ bool Process::is_running()
 
 }
 
+void Process::resume()
+{
+  uv_kill(handle.pid,SIGCONT);
+}
+
 
 void Process::stop()
 {
-
+  uv_kill(handle.pid,SIGSTOP);
 }
 
 
-void Process::off()
+void Process::destroy()
 {
-
+  uv_kill(handle.pid,SIGKILL);
 }
+
