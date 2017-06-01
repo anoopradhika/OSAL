@@ -25,6 +25,6 @@ set (Tutorial_VERSION_MINOR 0)
 
 add_subdirectory(Test)
 add_library(process  Process.cpp)
-#target_link_libraries(process engine)
+target_link_libraries(process engine libuv.a)
 
 
