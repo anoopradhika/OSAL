@@ -17,6 +17,8 @@
  *  or see <http://www.gnu.org/licenses/>
 */
 
+#ifndef ENGINE_CONTROLLER_INCULDE_H
+#define ENGINE_CONTROLLER_INCULDE_H
 
 #include <uv.h>
 
@@ -29,3 +31,6 @@ public:
   uv_loop_t* handle;
   static const uv_run_mode run_option;
 };
+
+#endif //ENGINE_CONTROLLER_INCULDE_H
+
