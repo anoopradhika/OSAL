@@ -2,6 +2,8 @@
 #include "gtest/gtest.h"
 #include"../Engine/Engine.h"
 
+#ifndef OSAL_TEST_BASE_INCLUDE_H
+#define OSAL_TEST_BASE_INCLUDE_H
 
 class osal_test_base : testing::Test
 {
@@ -15,7 +17,7 @@ class osal_test_base : testing::Test
   osal_test_base();
   
   /** destory osal_test_base*/
-  ~osal_test_base();
+  virtual ~osal_test_base();
 
  void setup_test_base();
  
@@ -26,3 +28,6 @@ class osal_test_base : testing::Test
  virtual void TearDown();
 
 };
+
+#endif //OSAL_TEST_BASE_INCLUDE_H
+

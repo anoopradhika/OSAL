@@ -17,6 +17,9 @@
  *  or see <http://www.gnu.org/licenses/>
 */
 
+#ifndef ENGINE_INCLUDE_H
+#define ENGINE_INCLUDE_H
+
 #include"Engine_controller.h"
 
 class Engine
@@ -49,3 +52,6 @@ public:
 
   void off();
 };
+
+#endif //ENGINE_INCULDE_H
+

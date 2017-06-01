@@ -23,6 +23,9 @@ cmake_minimum_required (VERSION 2.6)
 set (Tutorial_VERSION_MAJOR 1)
 set (Tutorial_VERSION_MINOR 0)
 
+   
+
+
 add_executable(process_test  Process_test.cpp)
-target_link_libraries(process_test process)
+target_link_libraries(process_test process osal_test_base)
 

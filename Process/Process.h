@@ -17,6 +17,9 @@
  *  or see <http://www.gnu.org/licenses/>
 */
 
+#ifndef PROCESS_INCULDE_H
+#define PROCESS_INCULDE_H
+
 #include"../Engine/Engine.h"
 #include <unordered_map>
 //#include"Callback_manager.h"
@@ -128,3 +131,5 @@ private:
   Termination_notification_t notification;
   
 };
+
+#endif //PROCESS_INCULDE_H

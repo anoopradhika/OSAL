@@ -19,6 +19,8 @@
 
 #include"Engine.h"
 
+Engine* Engine::engine = NULL;
+
 bool Engine::engine_created = false;
 
 Engine::Engine()

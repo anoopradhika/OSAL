@@ -20,6 +20,9 @@
 #include"Process.h"
 #include <iostream>
 
+
+std::unordered_map<uint32_t, Process* > Process::process_map;
+
 Process::Process()
 {
 
