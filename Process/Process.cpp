@@ -36,7 +36,7 @@ Process::~Process()
 }
 
 
-void Process::create(const char* process_file_path, char** args, char** env )
+void Process::create(const char* process_file_path,char** args, char** env )
 {
   options.file = process_file_path;
   options.args = args;
@@ -79,7 +79,20 @@ void Process::run()
   Process* local_process = this;
   Engine_controller& engine_controller = engine->get_engine_controller();
 
-  uv_spawn(engine_controller.handle,&handle,&options);
+
+  char *args[] = { "/bin/sleep", "1000", NULL };
+
+  options.exit_cb = NULL;
+  options.file = "sleep";
+  options.args = args;
+options.flags = UV_PROCESS_DETACHED;
+
+  //uv_spawn(engine_controller.handle,&handle,&options);
+if(uv_spawn(uv_default_loop(), &handle, &options))
+{
+    fprintf(stderr, "Error!\n");
+
+}
   process_map.insert(std::pair<uint32_t, Process* >(handle.pid, this));
 }
 
