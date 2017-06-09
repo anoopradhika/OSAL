@@ -11,6 +11,7 @@ add_subdirectory(Engine)
 add_subdirectory(Process)
 add_subdirectory(osal_test_base)
 add_subdirectory(lib/gtest)
+add_subdirectory(callback_notifier)
 include_directories(${gtest_SOURCE_DIR}/inculde ${gtest_SOURCE_DIR})
 
 LINK_DIRECTORIES(${FARM_LIB})
