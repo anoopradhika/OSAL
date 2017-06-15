@@ -35,6 +35,9 @@ osal_test_base::~osal_test_base()
 void osal_test_base::SetUp()
 {
   engine = Engine::get_engine();
+  engine->start();
+  Engine_controller& engine_controller = engine->get_engine_controller();
+  fprintf(stderr,"osal_test_base:engine_controller.handle %d\n",engine_controller.handle);
 }
 
 

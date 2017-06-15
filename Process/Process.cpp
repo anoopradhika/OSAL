@@ -38,12 +38,17 @@ Process::~Process()
 
 void Process::create(const char* process_file_path,char** args, char** env )
 {
-  options.file = process_file_path;
-  options.args = args;
-  options.env = env;
-  options.exit_cb = &Process::termination_notification;
-  options.flags = UV_PROCESS_SETUID|UV_PROCESS_SETGID;
+//  options.file = process_file_path;
+//  options.args = args;
+//  options.env = env;
+//  options.exit_cb = &Process::termination_notification;
+//  options.flags = UV_PROCESS_SETUID|UV_PROCESS_SETGID;
   //TODO othere option not set yet. if need add it latter
+  options = new uv_process_options_t;
+  options->exit_cb = &Process::termination_notification;
+  options->file = "/bin/sleep";
+  options->args = args;
+  options->flags = UV_PROCESS_DETACHED;
   notification = NULL;
   engine = Engine::get_engine();
 }
@@ -55,19 +60,15 @@ void Process::set_termination_notification(Termination_notification_t _notificat
 }
 
 
-void Process::tereminated(long int exit_status, int term_signal)
-{
-  (this->*notification)(exit_status,term_signal);
-}
-
 
 void Process::termination_notification(uv_process_t* _handle, long int exit_status, int term_signal)
 {
+
   std::unordered_map<uint32_t, Process* >::iterator process_iterator = process_map.find(_handle->pid);
   if(process_iterator != process_map.end())
   {
     Process* local_process = process_iterator->second;
-    local_process->tereminated(exit_status,term_signal);
+    local_process->requester(exit_status,term_signal);
   }
   
 }
@@ -79,21 +80,17 @@ void Process::run()
   Process* local_process = this;
   Engine_controller& engine_controller = engine->get_engine_controller();
 
-
-  char *args[] = { "/bin/sleep", "1000", NULL };
-
-  options.exit_cb = NULL;
-  options.file = "sleep";
-  options.args = args;
-options.flags = UV_PROCESS_DETACHED;
-
-  //uv_spawn(engine_controller.handle,&handle,&options);
-if(uv_spawn(uv_default_loop(), &handle, &options))
-{
-    fprintf(stderr, "Error!\n");
-
-}
-  process_map.insert(std::pair<uint32_t, Process* >(handle.pid, this));
+ fprintf(stderr,"engine_controller.handle %d uv_default_loop is %d\n",engine_controller.handle,uv_default_loop());
+  int32_t error = uv_spawn(engine_controller.handle,&handle,options);
+  if(error)
+//if(uv_spawn(uv_default_loop(), &handle, options))
+  {
+    fprintf(stderr, "Error = %s!\n",uv_err_name(error));
+  }
+  else
+  {
+    process_map.insert(std::pair<uint32_t, Process* >(handle.pid, this));
+  }
 }
 
 

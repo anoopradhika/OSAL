@@ -22,6 +22,8 @@
 
 #include"../Engine/Engine.h"
 #include <unordered_map>
+#include "../lib/Signal/Signal.h"
+
 //#include"Callback_manager.h"
 
 //TODO usage of uv_disable_stdio_inheritance need to be identified
@@ -67,14 +69,7 @@ public:
     Process address from termination_notification.
   */
   static std::unordered_map<uint32_t, Process* > process_map;
-  
-  
-  /**
-    called from termination_notification and used for accessing notification
-    @param exit_status: exit status of a terminated process
-    @param term_signal: Process is terminated because of this signal
-  */
-  void tereminated(long int exit_status, int term_signal);
+
 
   /**
     Set a functon to be called on the termination of process
@@ -116,13 +111,16 @@ public:
   
   /** called after stop. Cleanup the process before new start */
   void destroy();
+  
+  osal_lib::Signal2<uint64_t, uint32_t> requester;
+//  osal_lib::Signal2< int,float & > update2;
 
 private:
-  /** handle provide by unlib after process run */
+  /** handle provide by uvlib after process run */
   uv_process_t handle;
   
   /** option need to start a process, this is specific to uvlib */
-  uv_process_options_t options;
+  uv_process_options_t* options;
   
   /** Engine need for run a process class */
   Engine* engine;

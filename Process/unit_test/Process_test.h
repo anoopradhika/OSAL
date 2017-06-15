@@ -50,6 +50,8 @@ public:
 
   /** Do the clean operation called after the test */
   virtual void TearDown();
+  
+  void process_exit(uint64_t exit_code, uint32_t exit_signal);
 
 
 };
