@@ -28,18 +28,35 @@ Process_test::~Process_test()
 {}
 
 
-void Process_test::run_ls()
+void Process_test::run_sleep()
 {
-  printf("run_ls test");
   char* args[] = {"/bin/sleep", "2", NULL};
   process.create("/bin/sleep",args,NULL);  
   process.requester.Connect(this,&Process_test::process_exit);
   process.run();
 }
 
+void Process_test::run_ls()
+{
+  char* args[] = {"/bin/ls", "-ls", NULL};
+  process.create("/bin/ls",args,NULL);  
+  process.requester.Connect(this,&Process_test::process_exit);
+  process.run();
+}
+
+
+void Process_test::run_a_disable_test()
+{
+  char* args[] = {"/home/neo/build/OSAL/Process/unit_test/process_test","--gtest_filter=Process_test.print_test",NULL};
+  process.create("/home/neo/build/OSAL/Process/unit_test/process_test",args,NULL);  
+  process.requester.Connect(this,&Process_test::process_exit);
+  process.run();
+}
+
+
 void Process_test::process_exit(uint64_t exit_code, uint32_t exit_signal)
 {
-  printf("Process_test::process_exit exit_code = %d exit_signal = %d", exit_code, exit_signal);
+  printf("Process_test::process_exit exit_code = %d exit_signal = %d\n", exit_code, exit_signal);
 }
 
 
@@ -55,13 +72,39 @@ void Process_test::TearDown()
 }
 
 
-TEST_F(Process_test, run_ls_test)
+TEST_F(Process_test, run_sleep  )
+{
+  printf("start test");
+  run_sleep();
+  run();
+}
+
+
+TEST_F(Process_test, run_ls  )
 {
   printf("start test");
   run_ls();
   run();
 }
 
+
+TEST_F(Process_test, run_a_disable_test  )
+{
+  printf("start test");
+  run_a_disable_test();
+  run();
+}
+
+
+TEST_F(Process_test, DISABLED_run_ls  )
+{
+  printf("start ls test");
+}
+
+TEST_F(Process_test, print_test  )
+{
+  fprintf(stderr,"start ls test");
+}
 
 
 #if 0

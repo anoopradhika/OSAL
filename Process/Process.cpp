@@ -38,15 +38,22 @@ Process::~Process()
 
 void Process::create(const char* process_file_path,char** args, char** env )
 {
-//  options.file = process_file_path;
-//  options.args = args;
-//  options.env = env;
-//  options.exit_cb = &Process::termination_notification;
-//  options.flags = UV_PROCESS_SETUID|UV_PROCESS_SETGID;
+  const uint32_t std_in = 0;
+  const uint32_t std_out = 1;
+  const uint32_t std_err = 2;
   //TODO othere option not set yet. if need add it latter
   options = new uv_process_options_t;
+  memset(options,0,sizeof(uv_process_options_t));
+  stdio[std_in].flags = UV_INHERIT_FD;
+  stdio[std_in].data.fd = std_in;
+  stdio[std_out].flags = UV_INHERIT_FD;
+  stdio[std_out].data.fd = std_out;
+  stdio[std_err].flags = UV_INHERIT_FD;
+  stdio[std_err].data.fd = std_err;
+  options->stdio = stdio;
+  options->stdio_count = 3;
   options->exit_cb = &Process::termination_notification;
-  options->file = "/bin/sleep";
+  options->file = process_file_path;
   options->args = args;
   options->flags = UV_PROCESS_DETACHED;
   notification = NULL;
@@ -83,7 +90,6 @@ void Process::run()
  fprintf(stderr,"engine_controller.handle %d uv_default_loop is %d\n",engine_controller.handle,uv_default_loop());
   int32_t error = uv_spawn(engine_controller.handle,&handle,options);
   if(error)
-//if(uv_spawn(uv_default_loop(), &handle, options))
   {
     fprintf(stderr, "Error = %s!\n",uv_err_name(error));
   }

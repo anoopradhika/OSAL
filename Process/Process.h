@@ -122,12 +122,21 @@ private:
   /** option need to start a process, this is specific to uvlib */
   uv_process_options_t* options;
   
+  /** Number of stdio used to trace information created process */
+  static const uint32_t stdio_count = 3;
+  
+  /** container for stdio used by created process */
+  uv_stdio_container_t stdio[stdio_count];
+  
   /** Engine need for run a process class */
   Engine* engine;
 
   /** stores the callback to be called on process terminate */  
   Termination_notification_t notification;
   
+  
+  
 };
 
 #endif //PROCESS_INCULDE_H
+

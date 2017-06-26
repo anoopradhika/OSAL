@@ -42,8 +42,11 @@ public:
 
   virtual ~Process_test();
 
+  void run_sleep();
 
   void run_ls();
+
+  void run_a_disable_test();
 
   /** Setup needed for the Class process is adeded here */
   virtual void SetUp();
