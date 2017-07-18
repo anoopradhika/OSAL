@@ -1,3 +1,4 @@
+
 /*
  *  Copyright (C) 2017  Anoop Chandran
  *
@@ -17,64 +18,17 @@
  *  or see <http://www.gnu.org/licenses/>
 */
 
-#include"Engine.h"
+#include"Engine_controller.h"
 
-Engine* Engine::engine = NULL;
+const uv_run_mode Engine_controller::run_option = UV_RUN_DEFAULT;
 
-bool Engine::engine_created = false;
-
-Engine::Engine()
+Engine_controller::Engine_controller()
 {
 
 }
 
-Engine::~Engine()
-{
-  engine_created = false;
-}
-
-
-Engine* Engine::get_engine()
-{
-  if( false == engine_created )
-  {
-    engine = new Engine;
-    engine_created = true;
-  }
-  return engine;
-}
-
-Engine_controller& Engine::get_engine_controller()
-{
-  return engine_controller;
-}
-
-
-void Engine::start()
-{
-   engine_controller.handle = uv_default_loop();
-}
-
-void Engine::run()
-{
-  uv_run(engine_controller.handle,engine_controller.run_option);
-}
-
-
-void Engine::stop()
-{
-  uv_stop(engine_controller.handle);
-}
-
-
-bool Engine::is_running()
+Engine_controller::~Engine_controller()
 {
 
-}
-
-
-void Engine::off()
-{
-  uv_loop_close(engine_controller.handle);
 }
 
