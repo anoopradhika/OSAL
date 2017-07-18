@@ -23,7 +23,8 @@ cmake_minimum_required (VERSION 2.6)
 set (Tutorial_VERSION_MAJOR 1)
 set (Tutorial_VERSION_MINOR 0)
 
-add_library(engine  Engine.cpp Engine_controller.cpp)
-target_link_libraries(engine libuv.a)
+add_subdirectory(unit_test)
+add_library(process  Process.cpp)
+target_link_libraries(process engine libuv.a)
 
 

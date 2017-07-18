@@ -17,64 +17,57 @@
  *  or see <http://www.gnu.org/licenses/>
 */
 
-#include"Engine.h"
+#ifndef CALLBACK_NOTIFIER_UTEST_INCULDE_H
+#define CALLBACK_NOTIFIER_UTEST_INCULDE_H
 
-Engine* Engine::engine = NULL;
+#include"../callback_notifier.h"
 
-bool Engine::engine_created = false;
+#include"../../osal_test_base/osal_test_base.h"
 
-Engine::Engine()
+
+/**
+ Test class to test callback notification
+*/
+class Callback_notifier_utest: public:: osal_test_base
 {
 
-}
+private:
 
-Engine::~Engine()
+
+
+
+public:
+
+  Callback_notifier_utest();
+
+
+  virtual ~Callback_notifier_utest();
+
+
+  void test_notification();
+
+  /** Setup needed for the Class process is adeded here */
+  virtual void SetUp();
+
+  /** Do the clean operation called after the test */
+  virtual void TearDown();
+
+  Osal_Callback_notifier osal_Callback_notifier;
+};
+
+
+
+class callback_requester
 {
-  engine_created = false;
-}
+public:
+  callback_requester()
+  {}
+  
+  ~callback_requester()
+  {}
+  
+  void test_notification();
 
+};
 
-Engine* Engine::get_engine()
-{
-  if( false == engine_created )
-  {
-    engine = new Engine;
-    engine_created = true;
-  }
-  return engine;
-}
-
-Engine_controller& Engine::get_engine_controller()
-{
-  return engine_controller;
-}
-
-
-void Engine::start()
-{
-   engine_controller.handle = uv_default_loop();
-}
-
-void Engine::run()
-{
-  uv_run(engine_controller.handle,engine_controller.run_option);
-}
-
-
-void Engine::stop()
-{
-  uv_stop(engine_controller.handle);
-}
-
-
-bool Engine::is_running()
-{
-
-}
-
-
-void Engine::off()
-{
-  uv_loop_close(engine_controller.handle);
-}
-
+#endif //PROCESS_TEST_INCULDE_H

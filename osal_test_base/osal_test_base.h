@@ -17,64 +17,37 @@
  *  or see <http://www.gnu.org/licenses/>
 */
 
-#include"Engine.h"
+#include "gtest/gtest.h"
+#include"../Engine/Engine.h"
 
-Engine* Engine::engine = NULL;
+#ifndef OSAL_TEST_BASE_INCLUDE_H
+#define OSAL_TEST_BASE_INCLUDE_H
 
-bool Engine::engine_created = false;
-
-Engine::Engine()
+class osal_test_base : public:: testing::Test
 {
+ 
+ private:
+ Engine* engine;
+ 
+ public:
 
-}
+  /** osal_test_base construct */ 
+  osal_test_base();
+  
+  /** destory osal_test_base*/
+  virtual ~osal_test_base();
 
-Engine::~Engine()
-{
-  engine_created = false;
-}
+ /** add test Setup here */
+ virtual void SetUp();
+ 
+ /** run the test case */
+ 
+ void run();
+ 
+ /** add test cleanup here */
+ virtual void TearDown();
 
+};
 
-Engine* Engine::get_engine()
-{
-  if( false == engine_created )
-  {
-    engine = new Engine;
-    engine_created = true;
-  }
-  return engine;
-}
-
-Engine_controller& Engine::get_engine_controller()
-{
-  return engine_controller;
-}
-
-
-void Engine::start()
-{
-   engine_controller.handle = uv_default_loop();
-}
-
-void Engine::run()
-{
-  uv_run(engine_controller.handle,engine_controller.run_option);
-}
-
-
-void Engine::stop()
-{
-  uv_stop(engine_controller.handle);
-}
-
-
-bool Engine::is_running()
-{
-
-}
-
-
-void Engine::off()
-{
-  uv_loop_close(engine_controller.handle);
-}
+#endif //OSAL_TEST_BASE_INCLUDE_H
 

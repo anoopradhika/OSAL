@@ -17,22 +17,41 @@
  *  or see <http://www.gnu.org/licenses/>
 */
 
+#ifndef ENGINE_INCLUDE_H
+#define ENGINE_INCLUDE_H
 
-#include <uv.h>
+#include"Engine_controller.h"
 
 class Engine
 {
 
 private:
-  uv_loop_t* loop;
+  Engine_controller engine_controller;
+
+protected:
+  Engine();
+  
+  static Engine* engine;
+
+  static bool engine_created;
 
 public:
-  Engine();
   ~Engine();
 
+  static Engine* get_engine();
+
   void start();
+
   void run();
+
   bool is_running();
+
+  Engine_controller& get_engine_controller();
+
   void stop();
+
   void off();
 };
+
+#endif //ENGINE_INCULDE_H
+

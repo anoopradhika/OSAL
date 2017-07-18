@@ -17,64 +17,46 @@
  *  or see <http://www.gnu.org/licenses/>
 */
 
-#include"Engine.h"
+#ifndef PROCESS_TEST_INCULDE_H
+#define PROCESS_TEST_INCULDE_H
 
-Engine* Engine::engine = NULL;
+#include"../Process.h"
 
-bool Engine::engine_created = false;
+#include"../../osal_test_base/osal_test_base.h"
 
-Engine::Engine()
+/**
+ Test class to test Class Process
+*/
+class Process_test: public:: osal_test_base
 {
 
-}
+private:
 
-Engine::~Engine()
-{
-  engine_created = false;
-}
+  Process process;
 
 
-Engine* Engine::get_engine()
-{
-  if( false == engine_created )
-  {
-    engine = new Engine;
-    engine_created = true;
-  }
-  return engine;
-}
+public:
 
-Engine_controller& Engine::get_engine_controller()
-{
-  return engine_controller;
-}
+  Process_test();
 
 
-void Engine::start()
-{
-   engine_controller.handle = uv_default_loop();
-}
+  virtual ~Process_test();
 
-void Engine::run()
-{
-  uv_run(engine_controller.handle,engine_controller.run_option);
-}
+  void run_sleep();
 
+  void run_ls();
 
-void Engine::stop()
-{
-  uv_stop(engine_controller.handle);
-}
+  void run_a_disable_test();
 
+  /** Setup needed for the Class process is adeded here */
+  virtual void SetUp();
 
-bool Engine::is_running()
-{
-
-}
+  /** Do the clean operation called after the test */
+  virtual void TearDown();
+  
+  void process_exit(uint64_t exit_code, uint32_t exit_signal);
 
 
-void Engine::off()
-{
-  uv_loop_close(engine_controller.handle);
-}
+};
 
+#endif //PROCESS_TEST_INCULDE_H
